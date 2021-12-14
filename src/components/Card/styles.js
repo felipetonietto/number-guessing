@@ -33,7 +33,7 @@ export const Text = styled.text`
       : css`
           color: rgba(204, 51, 0, 1);
         `}
-  font-family: "clockicons", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 900;
 `;
 
@@ -176,4 +176,14 @@ export const Input = styled.input`
             opacity: 0.9;
           }
         `}
+`;
+
+export const Loader = styled.div`
+  margin-right: 5px;
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid rgba(67, 72, 84, 1); /* Blue */
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  animation: spin 2s linear infinite;
 `;

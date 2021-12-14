@@ -14,6 +14,7 @@ export default function Card() {
   // d) guessedNumber: número do palpite
   // e) inputNumber: número do input
   // f) numberError: booleano para erro na requisição utilizado como prop para o css
+  // g) loading: booleano para carregamento enquanto se faz a requisição
 
   const [number, setNumber] = useState(null);
   const [rightNumber, setRightNumber] = useState(false);
@@ -21,10 +22,12 @@ export default function Card() {
   const [guessedNumber, setGuessedNumber] = useState();
   const [inputNumber, setInputNumber] = useState();
   const [numberError, setNumberError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //Função na qual é feita a requisição do número aleatório, na qual são setados alguns states
 
   async function getNumber() {
+    setLoading(true);
     setRightNumber(false);
     setGuessedNumber();
     try {
@@ -36,6 +39,8 @@ export default function Card() {
     } catch (error) {
       setNumberError(true);
       setNumber(502);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -123,8 +128,17 @@ export default function Card() {
       {!number || +guessedNumber === +number || +number === +502 ? (
         <div>
           <Styled.NewRoundButton onClick={getNumber}>
-            <CgRedo size={20} color="white" />
-            <Styled.ButtonText>NOVA PARTIDA</Styled.ButtonText>
+            {loading ? (
+              <>
+                <Styled.Loader></Styled.Loader>
+                <Styled.ButtonText> Carregando...</Styled.ButtonText>
+              </>
+            ) : (
+              <>
+                <CgRedo size={20} color="white" />
+                <Styled.ButtonText>NOVA PARTIDA</Styled.ButtonText>
+              </>
+            )}
           </Styled.NewRoundButton>
         </div>
       ) : null}
