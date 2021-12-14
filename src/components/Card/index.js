@@ -153,7 +153,7 @@ export default function Card() {
           <Styled.Input
             type="number"
             value={inputNumber}
-            placeholder="digite o palpite"
+            placeholder="Digite o palpite"
             onChange={({ target }) => {
               if (target.value < 0) {
                 return;
