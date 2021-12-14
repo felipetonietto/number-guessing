@@ -7,12 +7,22 @@ import * as Styled from "./styles";
 import { CgRedo } from "react-icons/cg";
 
 export default function Card() {
+  // Os states criados abaixo com o hook useState são os seguintes:
+  // a) number: número trazido da requisição
+  // b) rightNumber: booleano caso o número do palpite e o númer da requisição sejam iguais
+  // c) greaterGuessedNumber: booleano caso o número do palpite seja maior que o númer da requisição
+  // d) guessedNumber: número do palpite
+  // e) inputNumber: número do input
+  // f) numberError: booleano para erro na requisição utilizado como prop para o css
+
   const [number, setNumber] = useState(null);
   const [rightNumber, setRightNumber] = useState(false);
   const [greaterGuessedNumber, setGreaterGuessedNumber] = useState(false);
   const [guessedNumber, setGuessedNumber] = useState();
   const [inputNumber, setInputNumber] = useState();
   const [numberError, setNumberError] = useState(false);
+
+  //Função na qual é feita a requisição do número aleatório, na qual são setados alguns states
 
   async function getNumber() {
     setRightNumber(false);
@@ -29,10 +39,14 @@ export default function Card() {
     }
   }
 
+  //Função de submit para o palpite
+
   function submitGuess() {
     setGuessedNumber(inputNumber);
     setInputNumber("");
   }
+
+  //useEffect que observa o número e o número do palpite (conforme dependências), a fim de setar alguns states
 
   useEffect(() => {
     if (+guessedNumber === +number) {
@@ -75,6 +89,16 @@ export default function Card() {
             <Styled.Numbers numberError={numberError}>502</Styled.Numbers>
           </Styled.Char>
         )}
+
+        {/* A fim de acertar o display de número de sete segmentos conforme arte do Figma, foi feito número por número, por isso o map().
+        O css contempla posição absoluta para o placeholder e posição relativa parar o número do palpite (ou erro),
+        eis que o placeholder sempre será um 8, que ocupa o espaço máximo. 
+        
+        O Placeholder possui praticamente os mesmos atributos de css que o Numbers, com a diferença acima descrita e a cor da fonte.
+        Foram passadas duas propriedades, a fim de alterar a cor dos números: sucesso ou erro, sendo que no css há a terceira opção
+        do ternário (preto).
+        */}
+
         {guessedNumber
           ?.toString()
           .split("")
@@ -92,6 +116,10 @@ export default function Card() {
             );
           })}
       </Styled.NumbersContainer>
+
+      {/* O botão de nova partida somente renderiza caso não haja número para ser palpitado,
+          caso o usuário tenha descoberto o número ou caso haja o erro na requisição. */}
+
       {!number || +guessedNumber === +number || +number === +502 ? (
         <div>
           <Styled.NewRoundButton onClick={getNumber}>
@@ -100,28 +128,36 @@ export default function Card() {
           </Styled.NewRoundButton>
         </div>
       ) : null}
+
+      {/* Input simples do HTML alterado somente no Styled Components.
+      Opção por envolver o input e o botão num form, para o usuário poder
+      somente pressionar enter para o submit, o que torna mais agradável
+      do que apertar o botão ENVIAR */}
+
       <Styled.SubmitContainer>
-        <Styled.Input
-          type="number"
-          value={inputNumber}
-          placeholder="digite o palpite"
-          onChange={({ target }) => {
-            if (target.value < 0) {
-              return;
-            }
-            if (target.value > 300) {
-              return;
-            }
-            setInputNumber(() => target.value);
-          }}
-          disabled={!number}
-        ></Styled.Input>
-        <Styled.SubmitButton
-          onClick={submitGuess}
-          disabled={!inputNumber || !number}
-        >
-          <Styled.ButtonText>ENVIAR</Styled.ButtonText>
-        </Styled.SubmitButton>
+        <form>
+          <Styled.Input
+            type="number"
+            value={inputNumber}
+            placeholder="digite o palpite"
+            onChange={({ target }) => {
+              if (target.value < 0) {
+                return;
+              }
+              if (target.value > 300) {
+                return;
+              }
+              setInputNumber(() => target.value);
+            }}
+            disabled={!number || numberError}
+          ></Styled.Input>
+          <Styled.SubmitButton
+            onClick={submitGuess}
+            disabled={!inputNumber || !number || numberError}
+          >
+            <Styled.ButtonText>ENVIAR</Styled.ButtonText>
+          </Styled.SubmitButton>
+        </form>
       </Styled.SubmitContainer>
     </Styled.Background>
   );
