@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Number Guessing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um simples jogo de adivinhar o número trazido pela API indicada.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Studio Sol Frontend Challenge](#studio-sol-frontend-challenge)
+- [Getting Started](#getting-started)
+- [Discussion](#discussion)
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Studio Sol Frontend Challenge
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Primeiramente, obrigado pela oportunidade. Fico muito feliz de poder participar de uma seleção numa empresa tão conhecida e reconhecida.
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `yarn build`
+- Por favor, clone o repositório.
+- Por favor, prossiga com o comando run `npm i` ou `yarn` seguido de `npm start` ou `yarn start` para ter certeza de que tudo está funcionando como deveria!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Discussion
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Foi um projeto desenvolvido com React, JavaScript e CSS com Styled Components. Foram criados estados e feitas funções que garantem o funcionamento do jogo. Os estilos e layout do Figma foram reproduzidos no teste. Foi adicionado loader, eis que ficava meio vago se a requisição havia realmente sido feita (o que não estava no Figma).
 
-### `yarn eject`
+Adicionei o mencionado loader por estar testando uma vez e a requisição demorou um pouco, aí não sabia que se a tela havia quebrado ou algo do tipo, mas era só a demora da requisição mesmo. Caso seja um problema adicionar a feature de loader, eu retiro prontamente.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Requisitos imprescindíveis no projeto: receber o número aleatório por meio da requisição hitando o endpoint indicado, com preparação para receber falhas; mostrar o status code do erro no painel; informar os textos acima do painel; colocar botão de nova partida que faz nova requisição; requisitos de implementação realizados;

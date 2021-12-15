@@ -38,7 +38,7 @@ export default function Card() {
       setNumberError(false);
     } catch (error) {
       setNumberError(true);
-      setNumber(502);
+      setNumber(error.response.data.StatusCode);
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,7 @@ export default function Card() {
   //Função de submit para o palpite
 
   function submitGuess() {
-    setGuessedNumber(inputNumber);
+    setGuessedNumber(+inputNumber);
     setInputNumber("");
   }
 
